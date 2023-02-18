@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS=-c -Wall 
 LDFLAGS=-lSDL2
-SOURCES=window.cpp
+SOURCES=main.cpp window.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=window
+EXECUTABLE=main
 
 all: $(SOURCES) $(EXECUTABLE)
 
