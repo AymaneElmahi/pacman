@@ -1,67 +1,25 @@
-#include "window.hpp"
+#include "window.h"
 
-Window::Window(const char *title, int x, int y, int w, int h)
-{
-    {
-        if (SDL_Init(SDL_INIT_VIDEO) < 0)
-        {
-            std::cerr << "SDL initialization failed: " << SDL_GetError() << std::endl;
-            std::exit(1);
-        }
+Window::Window() {
 
-        window_ = SDL_CreateWindow(title, x, y, w, h, SDL_WINDOW_SHOWN);
-        renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED);
-
-        if (!window_ || !renderer_)
-        {
-            std::cerr << "Failed to create window or renderer: " << SDL_GetError() << std::endl;
-            std::exit(1);
-        }
-
-        spriteSheet_ = SDL_LoadBMP("pacman_sprites.bmp");
-        if (!spriteSheet_)
-        {
-            std::cerr << "Failed to load sprite sheet: " << SDL_GetError() << std::endl;
-            std::exit(1);
-        }
-
-        texture_ = SDL_CreateTextureFromSurface(renderer_, spriteSheet_);
-        if (!texture_)
-        {
-            std::cerr << "Failed to create texture: " << SDL_GetError() << std::endl;
-            std::exit(1);
-        }
+    // Initialize SDL and create a window
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+        exit(1);
     }
+
+    window_ = SDL_CreateWindow("Pacman", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+    if (window_ == nullptr) {
+        std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
+
+    plancheSprites_ = SDL_LoadBMP("pacman_sprites.bmp");
+
 }
 
-Window::~Window()
-{
-    SDL_DestroyTexture(texture_);
-    SDL_DestroyRenderer(renderer_);
-    SDL_FreeSurface(spriteSheet_);
+Window::~Window() {
     SDL_DestroyWindow(window_);
     SDL_Quit();
 }
-
-void Window::run()
-{
-    bool running = true;
-    while (running)
-    {
-        SDL_Event event;
-        while (SDL_PollEvent(&event))
-        {
-            if (event.type == SDL_QUIT)
-            {
-                running = false;
-            }
-        }
-
-        SDL_RenderClear(renderer_);
-        SDL_RenderCopy(renderer_, texture_, &pacmanSrcRect_, &pacmanDestRect_);
-        SDL_RenderPresent(renderer_);
-        SDL_Delay(16);
-    }
-}
-
 
