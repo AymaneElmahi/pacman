@@ -1,7 +1,8 @@
 CC=g++
-CFLAGS=-c -Wall 
+CFLAGS=-c 
+# -Wall 
 LDFLAGS=-lSDL2
-SOURCES=main.cpp window.cpp
+SOURCES=main.cpp window.cpp map.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=main
 
