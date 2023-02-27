@@ -1,20 +1,43 @@
-CC=g++
-CFLAGS=-c -Wall 
-LDFLAGS=-lSDL2
-SOURCES=main.cpp window.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=main
+CC = g++
+CFLAGS ?= -Wall -Wextra -Werror -Wformat -g 
+LDLIBS?=-lm 
 
-all: $(SOURCES) $(EXECUTABLE)
+INCLUDE_PATH = ./inc
 
-$(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+TARGET   = chess
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+SRCDIR   = src
+OBJDIR   = obj
+BINDIR   = bin
 
-run: $(EXECUTABLE)
-	./$(EXECUTABLE)
-	
+SOURCES  := $(wildcard $(SRCDIR)/*.cc)
+INCLUDES := $(wildcard $(INCLUDE_PATH)/*.hpp)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.cc=$(OBJDIR)/%.o)
+
+$(BINDIR)/$(TARGET): $(OBJECTS)
+	mkdir -p $(BINDIR)
+	$(CC) -o $@ $^ $(CFLAGS) $(LDLIBS)
+	@echo "Linking complete!"
+
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cc $(INCLUDES)
+	mkdir -p $(OBJDIR)
+	$(CC) -o $@ -c $< $(CFLAGS) -I$(INCLUDE_PATH)
+
+
+PATH_TO_EXE = $(BINDIR)/$(TARGET)
+
+
+
+run:
+ifneq ("$(wildcard $(PATH_TO_EXE))", "")
+	./$(PATH_TO_EXE)
+else
+	@echo "\033[31mNo executable found!\033[0m"
+endif
+
+.PHONY: clean cov
 clean:
-	rm -rf *.o $(EXECUTABLE)
+	rm -f $(OBJDIR)/*.o
+	rm -f $(OBJDIR)/*.gcda
+	rm -f $(OBJDIR)/*.gcno
+	rm -f $(PATH_TO_EXE)
