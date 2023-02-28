@@ -1,7 +1,7 @@
 // class to handle the pacman game
 
 
-#include "window.h"
+#include "window.hpp"
 #include "pacman.hpp"
 #include "ghost.hpp"
 #include "dot.hpp"
@@ -20,31 +20,30 @@ class Game : public Window
         Game();
         ~Game();
 
-        void SetPacman(Pacman pacman);
-        void SetGhosts(std::vector<Ghost> ghosts);
-        void SetDots(std::vector<Dot> dots);
+        //void SetPacman(Pacman pacman);
+        //void SetGhosts(std::vector<Ghost> ghosts);
+        //void SetDots(std::vector<Dot> dots);
+//
+        //Pacman GetPacman();
+        //std::vector<Ghost> GetGhosts();
+        //std::vector<Dot> GetDots();
+//
+        //void Draw();
+        //void Update();
+        //void HandleInput();
+        //void CheckCollision();
+        //void CheckWin();
+        //void CheckLose();
+        //void Reset();
+        //void GameOver();
+        //void GameWin();
+        //void GameReset();
+        //void GameQuit();
+        //void GameStart();
+        //void GamePause();
+        //void GameResume();
+        //void GameExit();
 
-        Pacman GetPacman();
-        std::vector<Ghost> GetGhosts();
-        std::vector<Dot> GetDots();
-
-        void Draw();
-        void Update();
-        void HandleInput();
-        void CheckCollision();
-        void CheckWin();
-        void CheckLose();
-        void Reset();
-        void GameOver();
-        void GameWin();
-        void GameReset();
-        void GameQuit();
-        void GameStart();
-        void GamePause();
-        void GameResume();
-        void GameExit();
 
 
-
-}
-        
+}; 

@@ -16,7 +16,7 @@ class Ghost : public Actor
 
     public:
             
-        Ghost(int x, int y, int state, int speed, Pacman pacman);
+        Ghost(int x, int y, int state, int speed,const Pacman &pacman);
         ~Ghost();
 
         void SetState(int state);

@@ -1,10 +1,10 @@
 CC = g++
 CFLAGS ?= -Wall -Wextra -Werror -Wformat -g 
-LDLIBS?=-lm 
+LDLIBS = -lSDL2 -lSDL2_image 
 
 INCLUDE_PATH = ./inc
 
-TARGET   = chess
+TARGET   = pacman
 
 SRCDIR   = src
 OBJDIR   = obj
