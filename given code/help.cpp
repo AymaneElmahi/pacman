@@ -1,4 +1,4 @@
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include <iostream>
 
@@ -59,7 +59,7 @@ void draw()
     // ici on change entre les 2 sprites sources pour une jolie animation.
     SDL_Rect ghost_in2 = *ghost_in;
     if ((count/4)%2)
-        ghost_in2.x += 17;
+        ghost_in2.x += 25;
         
     // couleur transparente
     SDL_SetColorKey(plancheSprites, true, 0);
