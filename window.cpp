@@ -13,7 +13,7 @@ Window::Window()
         exit(1);
     }
 
-    window_ = SDL_CreateWindow("Pacman", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+    window_ = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 500, 520, SDL_WINDOW_SHOWN);
     if (window_ == nullptr)
     {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
@@ -30,18 +30,24 @@ Window::~Window()
 void Window::insertMap()
 {
 
+    SDL_Surface *windowSurface = SDL_GetWindowSurface(window_);
+
     SDL_Surface *map = map_->getPlancheSprites();
     SDL_Rect *srcRect = map_->getSrcRect();
     SDL_Rect *destRect = map_->getDestRect();
 
-    // adapt the window size to the map size
-    SDL_SetWindowSize(window_, destRect->w, destRect->h);
-    
+    // // adapt the window size to the map size
+    // SDL_SetWindowSize(window_, destRect->w, destRect->h);
+
     // print the rectangle
     std::cout << "srcRect: " << srcRect->x << " " << srcRect->y << " " << srcRect->w << " " << srcRect->h << std::endl;
     std::cout << "destRect: " << destRect->x << " " << destRect->y << " " << destRect->w << " " << destRect->h << std::endl;
+    std::cout << "windowSurface: " << windowSurface->w << " " << windowSurface->h << std::endl;
 
-    SDL_BlitSurface(map, srcRect, SDL_GetWindowSurface(window_), destRect);
+
+    // print the map
+    SDL_BlitScaled(map, srcRect, windowSurface, destRect);
+
 }
 
 void Window::run()

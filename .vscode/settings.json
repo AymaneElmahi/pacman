@@ -1,6 +1,10 @@
 {
   "files.associations": {
     "*.rmd": "markdown",
-    "vector": "cpp"
+    "vector": "cpp",
+    "*.tcc": "cpp",
+    "istream": "cpp",
+    "ostream": "cpp",
+    "typeinfo": "cpp"
   }
 }

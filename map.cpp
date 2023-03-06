@@ -11,17 +11,17 @@ Map::Map()
 
     // set srcRect
     srcRect_ = new SDL_Rect;
-    srcRect_->x = 200;
-    srcRect_->y = 3;
-    srcRect_->w = 168;
-    srcRect_->h = 216;
+    srcRect_->x = 0;
+    srcRect_->y = 0;
+    srcRect_->w = 225;
+    srcRect_->h = 250;
 
     // set destRect
     destRect_ = new SDL_Rect;
     destRect_->x = 3;
     destRect_->y = 3;
-    destRect_->w = 672 * 3 / 4;
-    destRect_->h = 864 * 3 / 4;
+    destRect_->w = 225*1;
+    destRect_->h = 250*1;
 
 }
 
