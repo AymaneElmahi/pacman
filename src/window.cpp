@@ -9,6 +9,9 @@ Window::Window()
     // Initialise pacman
     pacman_ = new Pacman();
 
+    // Initialise ghost
+    ghost_ = new Ghost();
+
     // Initialize SDL and create a window
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
@@ -65,11 +68,29 @@ void Window::insertPacman()
 
 }
 
+void Window::insertGhost()
+{
+    SDL_Rect *srcRect = ghost_->getSrcRect();
+    SDL_Rect *destRect = ghost_->getDestRect();
+
+    // print the rectangle
+    std::cout << "Ghost" << std::endl;
+    std::cout << "srcRect: " << srcRect->x << " " << srcRect->y << " " << srcRect->w << " " << srcRect->h << std::endl;
+    std::cout << "destRect: " << destRect->x << " " << destRect->y << " " << destRect->w << " " << destRect->h << std::endl;
+
+    // print the ghost
+    
+    SDL_BlitScaled(ghost_->getPlancheSprites(), srcRect, SDL_GetWindowSurface(window_), destRect);
+
+}
+
+
 void Window::run()
 {
 
     insertMap();
     insertPacman();
+    insertGhost();
     SDL_UpdateWindowSurface(window_);
     SDL_Delay(5000);
 }

@@ -35,7 +35,6 @@ private:
     int vitesse_;
     int vie_;
     int score_;
-    // srcRect_ and destRect_ 
     SDL_Rect *srcRect_;
     SDL_Rect *destRect_;
 };
