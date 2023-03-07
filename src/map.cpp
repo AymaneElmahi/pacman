@@ -3,25 +3,28 @@
 Map::Map()
 {
     // load image
-    plancheSprites_ = SDL_LoadBMP("./assets/pacman_sprites2.bmp");
+    plancheSprites_ = SDL_LoadBMP("./assets/empty_map.bmp");
     if (plancheSprites_ == NULL)
     {
         std::cout << "Error: " << SDL_GetError() << std::endl;
     }
 
-    // set srcRect
-    srcRect_ = new SDL_Rect;
-    srcRect_->x = 369;
-    srcRect_->y = 3;
-    srcRect_->w = 168;
-    srcRect_->h = 216;
+    // print the plancheSprites size
+    std::cout << "plancheSprites: " << plancheSprites_->w << " " << plancheSprites_->h << std::endl;
 
-    // set destRect
-    destRect_ = new SDL_Rect;
-    destRect_->x = 3;
-    destRect_->y = 3;
-    destRect_->w = 168*3;
-    destRect_->h = 216*3;
+    // set srcRect to the size of the plancheSprites
+    srcRect_ = new SDL_Rect();
+    srcRect_->x = 0;
+    srcRect_->y = 0;
+    srcRect_->w = plancheSprites_->w;
+    srcRect_->h = plancheSprites_->h;
+
+    // set destRect to the size of the window
+    destRect_ = new SDL_Rect();
+    destRect_->x = 0;
+    destRect_->y = 0;
+    destRect_->w = 680;
+    destRect_->h = 750;
 
 }
 
