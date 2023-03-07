@@ -1,28 +1,27 @@
-#pragma once 
+#pragma once
+
+#include <iostream>
+#include <SDL2/SDL.h>
+#include <pacman.hpp>
+#include <ghost.hpp>
+#include <dot.hpp>
+#include <vector>
 
 
-#include <SDL2/SDL.h> 
-#include <SDL2/SDL_image.h>
-#include <iostream> 
-#include <vector> 
-#include "pacman.hpp" 
-#include "ghost.hpp" 
-#include "dot.hpp" 
-
-class Window { 
+class Window {
     
-    public : 
+
+    protected:
+
+        SDL_Window *window_;    
+        Pacman *pacman_;
+        vector<Ghost> *ghosts_;
+        vector<Dot> *dots_;
+
+    public:
+        Window();
+        ~Window();
+
+        void refreshWindow();
     
-        Window (); 
-        ~ Window (); 
-        // void handle_events(); 
-        // void render(); 
-        // void run(); 
-
-    protected : 
-        SDL_Window * window_ ; 
-        SDL_Surface * plancheSprites_ ; 
-
 };
-
-

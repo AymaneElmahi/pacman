@@ -26,5 +26,7 @@ class Ghost : public Actor
         int GetState();
         int GetSpeed();
         Pacman GetPacman();
+
+        int eatPacman();
         
 };

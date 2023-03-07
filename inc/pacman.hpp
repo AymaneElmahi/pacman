@@ -24,6 +24,8 @@ class Pacman : public Actor {
         int GetLives();
         bool GetBoost();
 
+        
+
 };
 
 

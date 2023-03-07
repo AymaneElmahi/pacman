@@ -41,3 +41,7 @@ Pacman Ghost::GetPacman()
     return pacman_;
 }
 
+int Ghost::eatPacman()
+{
+    return 0;
+}

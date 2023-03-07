@@ -5,12 +5,14 @@
 #include "pacman.hpp"
 #include "ghost.hpp"
 #include "dot.hpp"
+#include <vector>
 
 
 class Game : public Window
 {
     private:
         
+        int score_;
         Pacman pacman_;
         std::vector<Ghost> ghosts_;
         std::vector<Dot> dots_;
