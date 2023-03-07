@@ -13,7 +13,7 @@ Window::Window()
         exit(1);
     }
 
-    window_ = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 515, 650, SDL_WINDOW_SHOWN);
+    window_ = SDL_CreateWindow("Pacman", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 680, 750, SDL_WINDOW_SHOWN);
     if (window_ == nullptr)
     {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
@@ -35,9 +35,6 @@ void Window::insertMap()
     SDL_Surface *map = map_->getPlancheSprites();
     SDL_Rect *srcRect = map_->getSrcRect();
     SDL_Rect *destRect = map_->getDestRect();
-
-    // // adapt the window size to the map size
-    // SDL_SetWindowSize(window_, destRect->w, destRect->h);
 
     // print the rectangle
     std::cout << "srcRect: " << srcRect->x << " " << srcRect->y << " " << srcRect->w << " " << srcRect->h << std::endl;
