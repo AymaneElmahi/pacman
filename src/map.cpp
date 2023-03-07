@@ -3,7 +3,7 @@
 Map::Map()
 {
     // load image
-    plancheSprites_ = SDL_LoadBMP("./assets/empty_map.bmp");
+    plancheSprites_ = SDL_LoadBMP("./assets/map/empty_map.bmp");
     if (plancheSprites_ == NULL)
     {
         std::cout << "Error: " << SDL_GetError() << std::endl;

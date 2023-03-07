@@ -6,6 +6,9 @@ Window::Window()
     // Initialise map
     map_ = new Map();
 
+    // Initialise pacman
+    pacman_ = new Pacman();
+
     // Initialize SDL and create a window
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
@@ -46,10 +49,27 @@ void Window::insertMap()
     SDL_BlitScaled(map, srcRect, windowSurface, destRect);
 }
 
+void Window::insertPacman()
+{
+    SDL_Rect *srcRect = pacman_->getSrcRect();
+    SDL_Rect *destRect = pacman_->getDestRect();
+
+    // print the rectangle
+    std::cout << "Pacman" << std::endl;
+    std::cout << "srcRect: " << srcRect->x << " " << srcRect->y << " " << srcRect->w << " " << srcRect->h << std::endl;
+    std::cout << "destRect: " << destRect->x << " " << destRect->y << " " << destRect->w << " " << destRect->h << std::endl;
+
+    // print the pacman
+    
+    SDL_BlitScaled(pacman_->getPlancheSprites(), srcRect, SDL_GetWindowSurface(window_), destRect);
+
+}
+
 void Window::run()
 {
 
     insertMap();
+    insertPacman();
     SDL_UpdateWindowSurface(window_);
     SDL_Delay(5000);
 }
